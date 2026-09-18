@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="15" fill="#14150F"/>
+  <circle cx="32" cy="32" r="21" fill="none" stroke="#F7F5F0" stroke-opacity="0.3" stroke-width="1.6"/>
+  <path d="M32 11 A21 21 0 0 1 51.2 23.4" fill="none" stroke="#93A68F" stroke-width="2.6" stroke-linecap="round"/>
+  <circle cx="51.2" cy="23.4" r="2.6" fill="#93A68F"/>
+  <text x="32" y="40" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="19" fill="#F7F5F0">OS</text>
+</svg>

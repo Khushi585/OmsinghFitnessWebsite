@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --nav-h: 76px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* offset for the sticky navbar when jumping to #sections */
+    scroll-padding-top: var(--nav-h);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-bone text-charcoal font-sans antialiased;
+    overflow-x: hidden;
+    /* scale factor applied on very large displays — see the block below */
+    --zoom: 1;
+  }
+
+  ::selection {
+    @apply bg-moss text-bone;
+  }
+
+  /* Editorial numerals in stat blocks */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  .container-px {
+    @apply mx-auto w-full max-w-content px-5 sm:px-8 lg:px-12;
+  }
+
+  .display {
+    @apply font-display font-light leading-[0.95] tracking-tightest;
+  }
+
+  .link-underline {
+    @apply relative inline-flex items-center gap-2;
+  }
+  .link-underline::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 h-px w-full origin-right scale-x-0 bg-current transition-transform duration-500 ease-premium;
+  }
+  .link-underline:hover::after {
+    @apply origin-left scale-x-100;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   Large-display scaling.
+
+   The layout is an editorial column capped at 1280px. On a 1440-1680px screen
+   that is exactly right, but on a 4K or ultrawide monitor the whole site would
+   sit as a small island in the middle of the screen. Rather than stretching
+   individual sections (which would break the typographic proportions), the page
+   is scaled up as a whole, so the design keeps its intended look at any size.
+
+   `--zoom` is kept in sync with `zoom` so viewport-height maths can divide by it
+   (see .h-hero below) — otherwise the full-height hero would scale past the
+   bottom of the screen.
+-------------------------------------------------------------------------- */
+@media (min-width: 1700px) {
+  body {
+    --zoom: 1.15;
+    zoom: var(--zoom);
+  }
+}
+@media (min-width: 2100px) {
+  body {
+    --zoom: 1.4;
+    zoom: var(--zoom);
+  }
+}
+@media (min-width: 2600px) {
+  body {
+    --zoom: 1.65;
+    zoom: var(--zoom);
+  }
+}
+@media (min-width: 3200px) {
+  body {
+    --zoom: 2.1;
+    zoom: var(--zoom);
+  }
+}
+@media (min-width: 3800px) {
+  body {
+    --zoom: 2.4;
+    zoom: var(--zoom);
+  }
+}
+
+/* Full-height hero, corrected for the scale factor above */
+.h-hero {
+  min-height: calc((100svh - 7rem) / var(--zoom, 1));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Slim, quiet scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f2efe8;
+}
+::-webkit-scrollbar-thumb {
+  background: #d8d2c5;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #93a68f;
+}
